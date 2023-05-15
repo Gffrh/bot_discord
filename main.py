@@ -1,5 +1,5 @@
 import discord 
-import datetime
+import datetime 
 import requests
 from historique import historique_commandes
 
@@ -62,3 +62,14 @@ async def chien(ctx):
         embed = discord.Embed()
         embed.set_image(url=image_url)
         await ctx.send(embed=embed)
+
+@client.command(name="nasa")
+async def on_message(message):
+    url = 'https://api.nasa.gov/planetary/apod?api_key=ADUXlwdiuFNW4NErH0l0zteTOgsN6ZYUkMIZBqIZ'
+    response = requests.get(url)
+    data = response.json()
+    embed = discord.Embed(title=data['title'])
+    embed.set_image(url=data['url'])
+    await message.channel.send(embed=embed)
+    await message.channel.send("Image du jour NASA")
+
