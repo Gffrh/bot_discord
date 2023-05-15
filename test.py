@@ -1,11 +1,9 @@
 import discord 
 import datetime
 intents = discord.Intents.all()
-
 from discord.ext import commands
 
 client = commands.Bot(command_prefix="!", intents = intents)
-
 
 @client.event
 async def on_ready():
@@ -15,12 +13,9 @@ last_commands = {}
 
 @client.command(name ="last_command")
 async def history(ctx):
-    if ctx.author.id not in last_commands:
-        await ctx.send("Vous n'avez pas encore entré de commandes.")
-    else:
-        await ctx.send("Voici les dernières commandes utilisées :")
-        for command in last_commands[ctx.author.id]:
-            await ctx.send(command)
+    await ctx.send("Voici les dernières commandes utilisées :")
+    for command in last_commands[ctx.author.id]:
+        await ctx.send(command)
 @client.event
 async def on_message(message):
     if message.content.startswith("!"):
