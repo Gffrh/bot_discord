@@ -1,7 +1,5 @@
 import discord 
 import datetime
-
-
 intents = discord.Intents.all()
 
 from discord.ext import commands
